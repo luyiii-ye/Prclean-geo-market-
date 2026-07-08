@@ -1,0 +1,112 @@
+[
+  {
+    "country_id": "FR",
+    "中文名": "法国",
+    "英文名": "France",
+    "ISO2": "FR",
+    "ISO3": "FRA",
+    "常用别名": "法国;France;FR;FRA",
+    "区域大区": "欧洲",
+    "是否区域合并项": "否"
+  },
+  {
+    "country_id": "ES",
+    "中文名": "西班牙",
+    "英文名": "Spain",
+    "ISO2": "ES",
+    "ISO3": "ESP",
+    "常用别名": "西班牙;Spain;España;ES;ESP",
+    "区域大区": "欧洲",
+    "是否区域合并项": "否"
+  },
+  {
+    "country_id": "IT",
+    "中文名": "意大利",
+    "英文名": "Italy",
+    "ISO2": "IT",
+    "ISO3": "ITA",
+    "常用别名": "意大利;Italy;Italia;IT;ITA",
+    "区域大区": "欧洲",
+    "是否区域合并项": "否"
+  },
+  {
+    "country_id": "DE",
+    "中文名": "德国",
+    "英文名": "Germany",
+    "ISO2": "DE",
+    "ISO3": "DEU",
+    "常用别名": "德国;Germany;Deutschland;DE;DEU",
+    "区域大区": "欧洲",
+    "是否区域合并项": "否"
+  },
+  {
+    "country_id": "GB",
+    "中文名": "英国",
+    "英文名": "United Kingdom",
+    "ISO2": "GB",
+    "ISO3": "GBR",
+    "常用别名": "英国;United Kingdom;UK;Great Britain;GB;GBR",
+    "区域大区": "欧洲",
+    "是否区域合并项": "否"
+  },
+  {
+    "country_id": "BENELUX",
+    "中文名": "Benelux",
+    "英文名": "Benelux",
+    "ISO2": null,
+    "ISO3": null,
+    "常用别名": "Benelux;比荷卢;比利时荷兰卢森堡;Belgium Netherlands Luxembourg",
+    "区域大区": "欧洲",
+    "是否区域合并项": "是"
+  },
+  {
+    "country_id": "RU",
+    "中文名": "俄罗斯",
+    "英文名": "Russia",
+    "ISO2": "RU",
+    "ISO3": "RUS",
+    "常用别名": "俄罗斯;Russia;RU;RUS",
+    "区域大区": "欧洲",
+    "是否区域合并项": "否"
+  },
+  {
+    "country_id": "PT",
+    "中文名": "葡萄牙",
+    "英文名": "Portugal",
+    "ISO2": "PT",
+    "ISO3": "PRT",
+    "常用别名": "葡萄牙;Portugal;PT;PRT",
+    "区域大区": "欧洲",
+    "是否区域合并项": "否"
+  },
+  {
+    "country_id": "AT",
+    "中文名": "奥地利",
+    "英文名": "Austria",
+    "ISO2": "AT",
+    "ISO3": "AUT",
+    "常用别名": "奥地利;Austria;Österreich;AT;AUT",
+    "区域大区": "欧洲",
+    "是否区域合并项": "否"
+  },
+  {
+    "country_id": "CH",
+    "中文名": "瑞士",
+    "英文名": "Switzerland",
+    "ISO2": "CH",
+    "ISO3": "CHE",
+    "常用别名": "瑞士;Switzerland;Suisse;Schweiz;CH;CHE",
+    "区域大区": "欧洲",
+    "是否区域合并项": "否"
+  },
+  {
+    "country_id": "PL",
+    "中文名": "波兰",
+    "英文名": "Poland",
+    "ISO2": "PL",
+    "ISO3": "POL",
+    "常用别名": "波兰;Poland;Polska;PL;POL",
+    "区域大区": "欧洲",
+    "是否区域合并项": "否"
+  }
+]
