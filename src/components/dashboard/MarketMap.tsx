@@ -3,7 +3,8 @@
 import dynamic from "next/dynamic";
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import type { CustomerCountrySummary, MapCountry } from "@/types/dashboard";
+import type { CurrencyCode, CustomerCountrySummary, MapCountry } from "@/types/dashboard";
+import { formatMoneyEur } from "@/lib/format";
 
 const ReactECharts = dynamic(() => import("echarts-for-react"), { ssr: false });
 const EUROPE_MAP_NAME = "dashboard-europe-real-20260708";
@@ -15,8 +16,16 @@ interface MarketMapProps {
   countries: MapCountry[];
   hoveredCountryId: string | null;
   customerSummaries: CustomerCountrySummary[];
+  currency: CurrencyCode;
   onHoverCountry: (countryId: string | null) => void;
   onSelectCountry: (countryId: string) => void;
+}
+
+interface MapPointData {
+  name: string;
+  value: [number, number, number];
+  countryId: string;
+  marketValueLabel: string;
 }
 
 function colorFor(value: number, min: number, max: number): string {
@@ -33,7 +42,7 @@ function colorFor(value: number, min: number, max: number): string {
   return "#FDE68A";
 }
 
-export function MarketMap({ countries, hoveredCountryId, onHoverCountry, onSelectCountry }: MarketMapProps) {
+export function MarketMap({ countries, hoveredCountryId, currency, onHoverCountry, onSelectCountry }: MarketMapProps) {
   const router = useRouter();
   const [mapReady, setMapReady] = useState(false);
   const shown = countries.filter((country) => country["是否展示"] === "是");
@@ -82,6 +91,7 @@ export function MarketMap({ countries, hoveredCountryId, onHoverCountry, onSelec
         name: country["国家/区域中文名"],
         value: [country["经度"], country["纬度"], value],
         countryId: country.country_id,
+        marketValueLabel: formatMoneyEur(value, currency),
         symbolSize: size,
         itemStyle: {
           color: colorFor(value, min, max),
@@ -138,8 +148,12 @@ export function MarketMap({ countries, hoveredCountryId, onHoverCountry, onSelec
       },
       tooltip: {
         trigger: "item",
-        formatter: (params: { data: { name: string; value: [number, number, number] } }) =>
-          `${params.data.name}<br/>Offline market value: €${Math.round(params.data.value[2]).toLocaleString()}`
+        formatter: (params: { data?: MapPointData }) => {
+          if (!params.data) {
+            return "";
+          }
+          return `${params.data.name}<br/>Offline market value: ${params.data.marketValueLabel}`;
+        }
       },
       series: [
         {
@@ -160,7 +174,7 @@ export function MarketMap({ countries, hoveredCountryId, onHoverCountry, onSelec
         }
       ]
     };
-  }, [shown, min, max, hoveredCountryId]);
+  }, [shown, min, max, hoveredCountryId, currency]);
 
   if (!mapReady) {
     return (
