@@ -84,6 +84,7 @@ export default function HomePage() {
               countries={data.countries}
               customerSummaries={data.customerSummaries}
               hoveredCountryId={hoverCountryId}
+              currency={currency}
               onHoverCountry={handleHoverCountry}
               onSelectCountry={setSelectedCountryId}
             />
