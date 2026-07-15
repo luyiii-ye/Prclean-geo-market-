@@ -1,4 +1,5 @@
 export type CurrencyCode = "EUR" | "USD" | "CNY";
+export type SourceCurrencyCode = "EUR" | "USD";
 
 export interface MapCountry {
   country_id: string;
@@ -12,6 +13,9 @@ export interface MapCountry {
   "纬度": number;
   "最终加权校准后线下市场价值": number;
   base_currency: "EUR";
+  source_currency: SourceCurrencyCode;
+  "最终加权校准后线下市场价值_source_currency": number;
+  fx_to_eur: number;
   "泳池保有总量": number | null;
   "年新增泳池": number | null;
   "泳池基数属性": "住宅家庭泳池" | "公共泳池" | "商业泳池" | "混合";
@@ -33,6 +37,9 @@ export interface ScenarioRange {
   "线下渠道占比": number;
   "加权校准后线下市场价值": number;
   base_currency: "EUR";
+  source_currency: SourceCurrencyCode;
+  "加权校准后线下市场价值_source_currency": number;
+  fx_to_eur: number;
   "区间口径说明": string;
 }
 
