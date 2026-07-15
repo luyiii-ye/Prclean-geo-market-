@@ -13,11 +13,18 @@ interface ModelInfoPanelProps {
 
 export function ModelInfoPanel({ parameters, scenarios, selectedCountryId, currency }: ModelInfoPanelProps) {
   const visibleParameters = parameters
-    .filter((item) => item["是否展示"] === "是")
+    .filter((item) => item["是否展示"] === "是" && item["参数名称"] !== "美元源数据换算")
     .sort((a, b) => a["展示排序"] - b["展示排序"]);
   const countryScenarios = selectedCountryId
     ? scenarios.filter((item) => item.country_id === selectedCountryId)
     : [];
+  const scenarioNote = countryScenarios[0]?.["区间口径说明"]
+    .replace(/USD源模型已按 1 USD = 0\.925926 EUR 写入核心EUR金额列；原始USD金额保留在 source_currency 审计列。\s*/g, "")
+    .trim();
+  const firstScenario = countryScenarios[0];
+  const sourceCurrencyNote = firstScenario?.source_currency === "USD" && firstScenario.fx_to_eur
+    ? `源数据单位：USD；按 1 USD = ${firstScenario.fx_to_eur.toFixed(6)} EUR（1 EUR = ${(1 / firstScenario.fx_to_eur).toFixed(2)} USD）换算后参与估值展示。`
+    : null;
 
   return (
     <aside className="grid gap-4">
@@ -42,7 +49,8 @@ export function ModelInfoPanel({ parameters, scenarios, selectedCountryId, curre
                 </span>
               </div>
             ))}
-            <p className="mt-2 text-xs leading-5 text-dashboard-weak">{countryScenarios[0]["区间口径说明"]}</p>
+            {sourceCurrencyNote ? <p className="mt-2 text-xs leading-5 text-dashboard-weak">{sourceCurrencyNote}</p> : null}
+            {scenarioNote ? <p className="mt-2 text-xs leading-5 text-dashboard-weak">{scenarioNote}</p> : null}
           </div>
         ) : (
           <p className="mt-3 text-sm text-dashboard-sub">选择国家查看估值区间。</p>

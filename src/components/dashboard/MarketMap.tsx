@@ -7,15 +7,25 @@ import type { CurrencyCode, CustomerCountrySummary, MapCountry } from "@/types/d
 import { formatMoneyEur } from "@/lib/format";
 
 const ReactECharts = dynamic(() => import("echarts-for-react"), { ssr: false });
-const EUROPE_MAP_NAME = "dashboard-europe-real-20260708";
-const EUROPE_MAP_URL = "/maps/europe-real.geo.json?v=20260708";
-let europeMapRegistered = false;
+const WORLD_MAP_NAME = "dashboard-world-countries-20260715";
+const WORLD_MAP_URL = "/maps/world-countries.geo.json?v=20260715";
+let worldMapRegistered = false;
 type RegisterMapSource = Parameters<typeof import("echarts").registerMap>[1];
+export type MapRegionKey = "欧洲" | "美洲" | "澳大利亚" | "西亚及中东" | "全部";
+
+const REGION_VIEW: Record<MapRegionKey, { boundingCoords: [[number, number], [number, number]]; layoutSize: string }> = {
+  欧洲: { boundingCoords: [[-12, 35], [42, 59]], layoutSize: "100%" },
+  美洲: { boundingCoords: [[-128, -45], [-34, 59]], layoutSize: "100%" },
+  澳大利亚: { boundingCoords: [[111, -45], [156, -10]], layoutSize: "100%" },
+  "西亚及中东": { boundingCoords: [[28, 5], [128, 53]], layoutSize: "100%" },
+  全部: { boundingCoords: [[-128, -45], [142, 59]], layoutSize: "100%" }
+};
 
 interface MarketMapProps {
   countries: MapCountry[];
   hoveredCountryId: string | null;
   customerSummaries: CustomerCountrySummary[];
+  selectedRegion: MapRegionKey;
   currency: CurrencyCode;
   onHoverCountry: (countryId: string | null) => void;
   onSelectCountry: (countryId: string) => void;
@@ -42,7 +52,7 @@ function colorFor(value: number, min: number, max: number): string {
   return "#FDE68A";
 }
 
-export function MarketMap({ countries, hoveredCountryId, currency, onHoverCountry, onSelectCountry }: MarketMapProps) {
+export function MarketMap({ countries, hoveredCountryId, selectedRegion, currency, onHoverCountry, onSelectCountry }: MarketMapProps) {
   const router = useRouter();
   const [mapReady, setMapReady] = useState(false);
   const shown = countries.filter((country) => country["是否展示"] === "是");
@@ -53,23 +63,23 @@ export function MarketMap({ countries, hoveredCountryId, currency, onHoverCountr
   useEffect(() => {
     let cancelled = false;
 
-    async function loadEuropeMap() {
-      const response = await fetch(EUROPE_MAP_URL, { cache: "no-store" });
+    async function loadGlobalMap() {
+      const response = await fetch(WORLD_MAP_URL, { cache: "no-store" });
       if (!response.ok) {
-        throw new Error("Failed to load Europe map");
+        throw new Error("Failed to load world country boundaries");
       }
       const geoJson = await response.json();
       const echarts = await import("echarts");
-      if (!europeMapRegistered) {
-        echarts.registerMap(EUROPE_MAP_NAME, geoJson as RegisterMapSource);
-        europeMapRegistered = true;
+      if (!worldMapRegistered) {
+        echarts.registerMap(WORLD_MAP_NAME, geoJson as RegisterMapSource);
+        worldMapRegistered = true;
       }
       if (!cancelled) {
         setMapReady(true);
       }
     }
 
-    loadEuropeMap().catch((error) => {
+    loadGlobalMap().catch((error) => {
       console.error(error);
       if (!cancelled) {
         setMapReady(false);
@@ -82,6 +92,7 @@ export function MarketMap({ countries, hoveredCountryId, currency, onHoverCountr
   }, []);
 
   const option = useMemo(() => {
+    const regionView = REGION_VIEW[selectedRegion];
     const data = shown.map((country) => {
       const value = country["最终加权校准后线下市场价值"] ?? 0;
       const size = 14 + Math.sqrt(value / Math.max(max, 1)) * 54;
@@ -118,15 +129,16 @@ export function MarketMap({ countries, hoveredCountryId, currency, onHoverCountr
     return {
       backgroundColor: "#F7F8FA",
       geo: {
-        map: EUROPE_MAP_NAME,
-        roam: false,
-        silent: true,
-        boundingCoords: [
-          [-25, 34],
-          [45, 72]
-        ],
-        layoutCenter: ["50%", "52%"],
-        layoutSize: "106%",
+        map: WORLD_MAP_NAME,
+        roam: true,
+        silent: false,
+        boundingCoords: regionView.boundingCoords,
+        layoutCenter: ["50%", "50%"],
+        layoutSize: regionView.layoutSize,
+        scaleLimit: {
+          min: 1,
+          max: 8
+        },
         itemStyle: {
           areaColor: "#E5E7EB",
           borderColor: "#FFFFFF",
@@ -174,23 +186,23 @@ export function MarketMap({ countries, hoveredCountryId, currency, onHoverCountr
         }
       ]
     };
-  }, [shown, min, max, hoveredCountryId, currency]);
+  }, [shown, min, max, hoveredCountryId, selectedRegion, currency]);
 
   if (!mapReady) {
     return (
-      <div className="relative flex h-full min-h-[620px] items-center justify-center overflow-hidden rounded-lg border border-dashboard-line bg-dashboard-page text-sm text-dashboard-sub">
-        正在加载欧洲地图...
+      <div className="relative flex h-[clamp(420px,58vh,680px)] items-center justify-center overflow-hidden rounded-lg border border-dashboard-line bg-dashboard-page text-sm text-dashboard-sub">
+        正在加载全球市场地图...
       </div>
     );
   }
 
   return (
-    <div className="relative h-full min-h-[620px] overflow-hidden rounded-lg border border-dashboard-line bg-dashboard-page">
+    <div className="relative h-[clamp(420px,58vh,680px)] overflow-hidden rounded-lg border border-dashboard-line bg-dashboard-page">
       <ReactECharts
-        key={EUROPE_MAP_NAME}
+        key={`${WORLD_MAP_NAME}-${selectedRegion}`}
         option={option}
         notMerge
-        style={{ height: "100%", minHeight: 620 }}
+        style={{ height: "100%" }}
         onEvents={{
           mouseover: (params: { data?: { countryId?: string } }) => onHoverCountry(params.data?.countryId ?? null),
           mouseout: () => onHoverCountry(null),
