@@ -108,5 +108,175 @@
     "常用别名": "波兰;Poland;Polska;PL;POL",
     "区域大区": "欧洲",
     "是否区域合并项": "否"
+  },
+  {
+    "country_id": "US",
+    "中文名": "美国",
+    "英文名": "United States",
+    "ISO2": "US",
+    "ISO3": "USA",
+    "常用别名": "美国;United States;USA;US;U.S.;America",
+    "区域大区": "北美",
+    "是否区域合并项": "否"
+  },
+  {
+    "country_id": "CA",
+    "中文名": "加拿大",
+    "英文名": "Canada",
+    "ISO2": "CA",
+    "ISO3": "CAN",
+    "常用别名": "加拿大;Canada;CA;CAN",
+    "区域大区": "北美",
+    "是否区域合并项": "否"
+  },
+  {
+    "country_id": "MX",
+    "中文名": "墨西哥",
+    "英文名": "Mexico",
+    "ISO2": "MX",
+    "ISO3": "MEX",
+    "常用别名": "墨西哥;Mexico;México;MX;MEX",
+    "区域大区": "北美",
+    "是否区域合并项": "否"
+  },
+  {
+    "country_id": "PR",
+    "中文名": "波多黎各",
+    "英文名": "Puerto Rico",
+    "ISO2": "PR",
+    "ISO3": "PRI",
+    "常用别名": "波多黎各;Puerto Rico;Puerto_Rico;PR;PRI",
+    "区域大区": "北美",
+    "是否区域合并项": "否"
+  },
+  {
+    "country_id": "CO",
+    "中文名": "哥伦比亚",
+    "英文名": "Colombia",
+    "ISO2": "CO",
+    "ISO3": "COL",
+    "常用别名": "哥伦比亚;Colombia;CO;COL",
+    "区域大区": "南美",
+    "是否区域合并项": "否"
+  },
+  {
+    "country_id": "BR",
+    "中文名": "巴西",
+    "英文名": "Brazil",
+    "ISO2": "BR",
+    "ISO3": "BRA",
+    "常用别名": "巴西;Brazil;Brasil;BR;BRA",
+    "区域大区": "南美",
+    "是否区域合并项": "否"
+  },
+  {
+    "country_id": "VE",
+    "中文名": "委内瑞拉",
+    "英文名": "Venezuela",
+    "ISO2": "VE",
+    "ISO3": "VEN",
+    "常用别名": "委内瑞拉;Venezuela;VE;VEN",
+    "区域大区": "南美",
+    "是否区域合并项": "否"
+  },
+  {
+    "country_id": "AR",
+    "中文名": "阿根廷",
+    "英文名": "Argentina",
+    "ISO2": "AR",
+    "ISO3": "ARG",
+    "常用别名": "阿根廷;Argentina;AR;ARG",
+    "区域大区": "南美",
+    "是否区域合并项": "否"
+  },
+  {
+    "country_id": "AU",
+    "中文名": "澳大利亚",
+    "英文名": "Australia",
+    "ISO2": "AU",
+    "ISO3": "AUS",
+    "常用别名": "澳大利亚;Australia;AU;AUS",
+    "区域大区": "澳大利亚",
+    "是否区域合并项": "否"
+  },
+  {
+    "country_id": "PH",
+    "中文名": "菲律宾",
+    "英文名": "Philippines",
+    "ISO2": "PH",
+    "ISO3": "PHL",
+    "常用别名": "菲律宾;Philippines;PH;PHL",
+    "区域大区": "西亚及中东",
+    "是否区域合并项": "否"
+  },
+  {
+    "country_id": "IL",
+    "中文名": "以色列",
+    "英文名": "Israel",
+    "ISO2": "IL",
+    "ISO3": "ISR",
+    "常用别名": "以色列;Israel;IL;ISR",
+    "区域大区": "西亚及中东",
+    "是否区域合并项": "否"
+  },
+  {
+    "country_id": "SA",
+    "中文名": "沙特",
+    "英文名": "Saudi Arabia",
+    "ISO2": "SA",
+    "ISO3": "SAU",
+    "常用别名": "沙特;Saudi;Saudi Arabia;SA;SAU",
+    "区域大区": "西亚及中东",
+    "是否区域合并项": "否"
+  },
+  {
+    "country_id": "AE",
+    "中文名": "阿联酋",
+    "英文名": "United Arab Emirates",
+    "ISO2": "AE",
+    "ISO3": "ARE",
+    "常用别名": "阿联酋;UAE;United Arab Emirates;AE;ARE",
+    "区域大区": "西亚及中东",
+    "是否区域合并项": "否"
+  },
+  {
+    "country_id": "KZ",
+    "中文名": "哈萨克斯坦",
+    "英文名": "Kazakhstan",
+    "ISO2": "KZ",
+    "ISO3": "KAZ",
+    "常用别名": "哈萨克斯坦;Kazakhstan;KZ;KAZ",
+    "区域大区": "西亚及中东",
+    "是否区域合并项": "否"
+  },
+  {
+    "country_id": "TR",
+    "中文名": "土耳其",
+    "英文名": "Turkey",
+    "ISO2": "TR",
+    "ISO3": "TUR",
+    "常用别名": "土耳其;Turkey;Türkiye;TR;TUR",
+    "区域大区": "西亚及中东",
+    "是否区域合并项": "否"
+  },
+  {
+    "country_id": "TH",
+    "中文名": "泰国",
+    "英文名": "Thailand",
+    "ISO2": "TH",
+    "ISO3": "THA",
+    "常用别名": "泰国;Thailand;TH;THA",
+    "区域大区": "西亚及中东",
+    "是否区域合并项": "否"
+  },
+  {
+    "country_id": "IN",
+    "中文名": "印度",
+    "英文名": "India",
+    "ISO2": "IN",
+    "ISO3": "IND",
+    "常用别名": "印度;India;IN;IND",
+    "区域大区": "西亚及中东",
+    "是否区域合并项": "否"
   }
 ]
