@@ -86,6 +86,33 @@ NEXT_PUBLIC_DASHBOARD_PASSWORD=your-password
 4. 设置需要的 `NEXT_PUBLIC_*` 展示层环境变量
 5. 使用默认 Next.js 构建命令部署
 
+## 外部展示版本提交前检查
+
+当前展示版本依赖以下静态文件，上传 GitHub 前需确认它们已提交：
+
+- `public/data/*.json`
+- `public/maps/world-countries.geo.json`
+- `src/app/page.tsx`
+- `src/components/dashboard/*.tsx`
+- `src/types/dashboard.ts`
+
+不要提交以下本地文件或目录：
+
+- `.next/`
+- `node_modules/`
+- `.env*`
+- `.vercel/`
+- `.DS_Store`
+
+Vercel 推荐设置：
+
+- Framework Preset: `Next.js`
+- Build Command: `npm run build`
+- Install Command: `npm install`
+- Output Directory: 使用默认值
+
+如果需要外部访问密码，在 Vercel 环境变量中设置 `NEXT_PUBLIC_DASHBOARD_PASSWORD`；不设置则公开访问。
+
 ## 后续新增国家或客户数据流程
 
 1. 更新 `pool_dashboard_data_source` 下的 Excel 数据源
