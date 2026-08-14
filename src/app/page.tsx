@@ -19,6 +19,11 @@ const REGION_FILTERS: Array<{ key: MapRegionKey; label: string; regions: string[
   { key: "全部", label: "全部", regions: null }
 ];
 
+const RAW_DATA_DOWNLOAD = {
+  href: "/data/current_market_size_summary.xlsx",
+  filename: "当前可视化_国家地区市场规模数据汇总.xlsx"
+};
+
 export default function HomePage() {
   const [data, setData] = useState<DashboardData | null>(null);
   const [currency, setCurrency] = useState<CurrencyCode>("EUR");
@@ -156,8 +161,24 @@ export default function HomePage() {
             />
             <MapLegend />
           </div>
-          <div className="order-2 xl:order-3">
+          <div className="order-2 grid content-start gap-4 xl:order-3">
             <CountrySummaryCard country={activeCountry} customerSummary={activeSummary} currency={currency} />
+            <a
+              href={RAW_DATA_DOWNLOAD.href}
+              download={RAW_DATA_DOWNLOAD.filename}
+              aria-label={`下载${RAW_DATA_DOWNLOAD.filename}`}
+              className="group rounded-lg border border-dashboard-line bg-white p-5 shadow-sm transition hover:border-orange-200 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-dashboard-orange/30"
+            >
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <div className="text-sm font-semibold text-dashboard-text">下载原始数据</div>
+                  <div className="mt-1 text-xs leading-5 text-dashboard-sub">{RAW_DATA_DOWNLOAD.filename}</div>
+                </div>
+                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-orange-50 text-lg font-semibold text-dashboard-orange transition group-hover:bg-dashboard-orange group-hover:text-white">
+                  ↓
+                </span>
+              </div>
+            </a>
           </div>
         </section>
       </main>
