@@ -1,24 +1,32 @@
+# Dependencies
 node_modules/
+
+# Next.js build output
 .next/
 out/
 
+# Local environment files
 .env*
 !.env.example
 
+# Vercel local metadata
 .vercel/
 
+# TypeScript / tooling cache
 *.tsbuildinfo
 .eslintcache
 .turbo/
 .swc/
 .cache/
 
+# Python cache from data export script
 __pycache__/
 *.py[cod]
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
 
+# System and temporary files
 .DS_Store
 *.tmp
 *.temp
@@ -28,7 +36,9 @@ __pycache__/
 *debug*.html
 *network*.har
 
+# Raw market model and collection artifacts should not be uploaded with the web app
 *.xlsx
+!public/data/current_market_size_summary.xlsx
 *.xls
 *.xlsm
 *.csv
